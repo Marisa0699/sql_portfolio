@@ -1,0 +1,64 @@
+select * from products;
+
+select * from sales;
+
+select * from stores;
+
+select * from inventory;
+
+-- Category product toys
+
+select * from products where Product_Category in('Toys');
+
+-- top 3 products with higher product cost
+
+select * from products order by Product_Cost desc;
+
+select top 3 Product_Name, Product_Cost from products order by Product_Cost desc;
+
+-- top 5 products with higher price
+
+select top 5 Product_Name, Product_Price from products order by Product_Price desc;
+
+-- Quantity of sales
+
+select count(*) from sales;
+
+select prod.Product_Name, prod.Product_Price, sale.Units
+from products as prod
+join sales as sale
+	on prod.Product_ID = sale.Product_ID
+	where Product_Price > 30;
+
+select Product_Name
+from products
+where Product_Name like 'M%' or Product_Name like 'P%';
+
+select store.Store_Name, store.Store_Location, invent.Stock_On_Hand
+from stores as store
+join inventory as invent
+	on store.Store_ID = invent.Store_ID
+	where Stock_On_Hand > 10;
+
+select Store_Name, Store_Location
+from stores
+where Store_ID in(12,15,19);
+
+select sale.Sale_ID, (sale.Units*prod.Product_Price) as total
+from products as prod
+inner join sales as sale
+on prod.Product_ID = sale.Product_ID;
+
+select round(sum(sale.Units*prod.Product_Price),0) as total_sales
+from products as prod
+inner join sales as sale
+on prod.Product_ID = sale.Product_ID;
+
+select top 50 sale.Sale_ID, prod.Product_Name, (sale.Units*prod.Product_Price) as total
+from products as prod
+inner join sales as sale
+on prod.Product_ID = sale.Product_ID;
+
+select Store_Name
+from stores
+where Store_City in('Guadalajara');
