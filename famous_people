@@ -1,0 +1,65 @@
+/* Table about famous people and what they do */
+
+CREATE table famous (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER,
+    marital_status TEXT);
+    
+INSERT INTO famous(fullname, age, marital_status) VALUES ("Penelope Cruz",48,"married");
+INSERT INTO famous(fullname, age, marital_status) VALUES ("Javier Bardem",53,"married");
+INSERT INTO famous(fullname, age, marital_status) VALUES ("Ben Affleck",50,"married");
+INSERT INTO famous(fullname, age, marital_status) VALUES ("Jennifer Lopez",53,"married");
+INSERT INTO famous(fullname, age, marital_status) VALUES ("Jennifer Garner",50,"divorced");
+INSERT INTO famous(fullname, age, marital_status) VALUES ("Henry Cavill",39,"single");
+INSERT INTO famous(fullname, age, marital_status) VALUES ("Jason Momoa",43,"single");
+INSERT INTO famous(fullname, age, marital_status) VALUES ("Emilia Clarke",35,"single");
+INSERT INTO famous(fullname, age, marital_status) VALUES ("Kit Harington",35,"married");
+INSERT INTO famous(fullname, age, marital_status) VALUES ("Sophie Turner",26,"married");
+    
+CREATE table job (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    famous_id INTEGER);
+    
+INSERT INTO job(name, famous_id) VALUES ("actor",1);
+INSERT INTO job(name, famous_id) VALUES ("actor",2);
+INSERT INTO job(name, famous_id) VALUES ("actor",3);
+INSERT INTO job(name, famous_id) VALUES ("director",3);
+INSERT INTO job(name, famous_id) VALUES ("actress",4);
+INSERT INTO job(name, famous_id) VALUES ("singer",4);
+INSERT INTO job(name, famous_id) VALUES ("actress",5);
+INSERT INTO job(name, famous_id) VALUES ("producer",5);
+INSERT INTO job(name, famous_id) VALUES ("actor",6);
+INSERT INTO job(name, famous_id) VALUES ("actor",7);
+INSERT INTO job(name, famous_id) VALUES ("writer",7);
+INSERT INTO job(name, famous_id) VALUES ("producer",7);
+INSERT INTO job(name, famous_id) VALUES ("director",7);
+INSERT INTO job(name, famous_id) VALUES ("actress",8);
+INSERT INTO job(name, famous_id) VALUES ("actor",9);
+INSERT INTO job(name, famous_id) VALUES ("actress",10);
+    
+CREATE table projects (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    famous1_id INTEGER,
+    famous2_id INTEGER);
+
+INSERT INTO projects (title, famous1_id, famous2_id) VALUES ("Escobar, la traicion",1,2);
+INSERT INTO projects (title, famous1_id, famous2_id) VALUES ("Batman VS Superman",3,6);
+INSERT INTO projects (title, famous1_id, famous2_id) VALUES ("La liga de la justicia",3,7);
+INSERT INTO projects (title, famous1_id, famous2_id) VALUES ("Nunca mas",4,Null);
+INSERT INTO projects (title, famous1_id, famous2_id) VALUES ("Pearl Harbor",3,5);
+INSERT INTO projects (title, famous1_id, famous2_id) VALUES ("Game of thrones",8,9);
+INSERT INTO projects (title, famous1_id, famous2_id) VALUES ("Game of thrones",7,10);
+
+
+SELECT a.fullname, b.fullname, title FROM projects
+    JOIN famous a
+    ON projects.famous1_id = a.id
+    JOIN famous b
+    ON projects.famous2_id = b.id;
+
+SELECT famous.fullname AS famous, job.name AS job FROM famous
+    JOIN job
+    ON famous.id = job.famous_id;
