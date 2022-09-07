@@ -1,0 +1,39 @@
+/* Journal app */
+
+CREATE TABLE user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER);
+
+CREATE TABLE journal_entry(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    description TEXT,
+    date TEXT);
+    
+INSERT INTO user (name, age) VALUES ("Carlos Parimango",20);    
+INSERT INTO user (name, age) VALUES ("Luca Urrelo",18);    
+INSERT INTO user (name, age) VALUES ("Luis Chavez",22);    
+INSERT INTO user (name, age) VALUES ("Carlos Espinoza",27);    
+INSERT INTO user (name, age) VALUES ("Estela Baca",20);    
+INSERT INTO user (name, age) VALUES ("Analia Paredes",30);    
+INSERT INTO user (name, age) VALUES ("Luisa Escobar",23);    
+INSERT INTO user (name, age) VALUES ("Tania Alva",20);    
+INSERT INTO user (name, age) VALUES ("Felipe Araoz",22);    
+INSERT INTO user (name, age) VALUES ("Norman Estrada",23);
+
+INSERT INTO journal_entry (user_id, description, date) VALUES (1,"Today I had a fight with my mom, she got mad at me out of the blue","2022-08-11");
+INSERT INTO journal_entry (user_id, description, date) VALUES (1,"My mom and I made up, she said she was mad because I didn't do the laundry hehe","2022-08-12");
+INSERT INTO journal_entry (user_id, description, date) VALUES (1,"I fell in front of my crush, my life can't get any better?","2022-08-13");
+INSERT INTO journal_entry (user_id, description, date) VALUES (5,"I need to go shopping, I lost so much weight that I had nothing to wear","2022-08-11");
+INSERT INTO journal_entry (user_id, description, date) VALUES (3,"I broke up with my bf, I guess it's for my wellbeing","2022-08-15");
+
+SELECT * FROM journal_entry;
+
+UPDATE journal_entry SET description = "I fell in front of my crush, but he asked me if I was okay" WHERE date = "2022-08-13";
+
+SELECT * FROM journal_entry;
+
+DELETE FROM journal_entry WHERE user_id = 3;
+
+SELECT * FROM journal_entry;
